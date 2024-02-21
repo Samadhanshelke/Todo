@@ -13,7 +13,7 @@ dbConnect();
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
-    origin:"https://todo-8j6l.onrender.com"
+    origin:"*"
 }))
 app.use("/", AuthRoutes)
 app.use("/", TodoRoutes)
