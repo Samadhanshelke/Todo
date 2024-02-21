@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+    font-family: 'Raleway', sans-serif;
+}
+.product_div:hover .product_show_btn{
+    display: flex;
+    flex-direction: column;
+    column-gap:22px ;
+    transition:0.8s all;
+    
+}
+
