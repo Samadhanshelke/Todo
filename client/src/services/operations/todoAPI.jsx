@@ -1,9 +1,8 @@
 import axios from "axios"
 import { setTab, setTodos } from "../../slices/todoSlice"
-// import dotenv from 'dotenv'
-// dotenv.config()
-const URL = import.meta.env.VITE_BACKEND_URL
-console.log(URL)
+
+const URL = 'https://todo-8j6l.onrender.com'
+
 export function createTodo(todo,token){
     return async (dispatch)=>{
      
