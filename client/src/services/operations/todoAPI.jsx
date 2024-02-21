@@ -1,12 +1,14 @@
 import axios from "axios"
 import { setTab, setTodos } from "../../slices/todoSlice"
-
-
+// import dotenv from 'dotenv'
+// dotenv.config()
+const URL = import.meta.env.VITE_BACKEND_URL
+console.log(URL)
 export function createTodo(todo,token){
     return async (dispatch)=>{
      
         try {
-             const response = await axios.post('http://localhost:3001/createTodo',todo,
+             const response = await axios.post(`${URL}/createTodo`,todo,
              {
                 headers: {
                  Authorization: `Bearer ${token}`,
@@ -26,7 +28,7 @@ export function getAllTodo(token){
     return async (dispatch)=>{
       
         try {
-            const response = await axios.get('http://localhost:3001/getAllTodo',
+            const response = await axios.get(`${URL}/getAllTodo`,
             {
                 headers: {
                  Authorization: `Bearer ${token}`,
@@ -49,7 +51,7 @@ export function changeTodoStatus(id,token){
     return async (dispatch)=>{
         try {
             
-            const response = await axios.post('http://localhost:3001/changeTodoStatus',{id},
+            const response = await axios.post(`${URL}/changeTodoStatus`,{id},
             {
                 headers: {
                  Authorization: `Bearer ${token}`,
@@ -71,7 +73,7 @@ export function updateTodo(data,token){
     return async(dispatch)=>{
        
         try {
-            const response = await axios.post('http://localhost:3001/updateTodo',{data}, {
+            const response = await axios.post(`${URL}/updateTodo`,{data}, {
                 headers: {
                  Authorization: `Bearer ${token}`,
               }
@@ -90,7 +92,7 @@ export function DeleteTodo(id,token){
     return async(dispatch)=>{
         
         try {
-            const response = await axios.post('http://localhost:3001/deleteTodo',{id}, {
+            const response = await axios.post(`${URL}/deleteTodo`,{id}, {
                 headers: {
                  Authorization: `Bearer ${token}`,
               }

@@ -3,7 +3,7 @@ import axios from "axios"
 import {setUser} from '../../slices/profileSlice';
 import {setLoading, setToken} from '../../slices/authSlice'
 import toast from "react-hot-toast";
-
+const URL = import.meta.env.VITE_BACKEND_URL
 // sendotp function
 export function sendOtp(Email,navigate){
    return async (dispatch)=>{
@@ -12,7 +12,7 @@ export function sendOtp(Email,navigate){
   
     try {
       
-          const response = await axios.post('http://localhost:3001/sendotp', {Email})
+          const response = await axios.post(`${URL}/sendotp`, {Email})
         
           if (!response.data.success) {
             throw new Error(response.data.message)
@@ -37,7 +37,7 @@ export function signUp( Name,Email,Phone,Password,otp,navigate){
    
     dispatch(setLoading(true))
     try {
-      const response = await axios.post('http://localhost:3001/signup', {
+      const response = await axios.post(`${URL}/signup`, {
         Name,
         Email,
         Phone,
@@ -68,7 +68,7 @@ export function signUp( Name,Email,Phone,Password,otp,navigate){
 export function login(data,navigate){
   return async (dispatch)=>{
   
-    axios.post('http://localhost:3001/login',data).then((response)=>{
+    axios.post(`${URL}/login`,data).then((response)=>{
       
       dispatch(setUser(response.data.user))
       dispatch(setToken(response.data.token))
@@ -101,7 +101,7 @@ export function logout(navigate){
 //update user
 export function updateUser(userData,token){
   return async (dispatch)=>{
-    const response = await axios.post('http://localhost:3001/updateUser',userData,{
+    const response = await axios.post(`${URL}/updateUser`,userData,{
       headers: {
         Authorization: `Bearer ${token}`,
      }
@@ -123,7 +123,7 @@ export function updateUser(userData,token){
 //forgot otp
 export async function forgotPassword(email,navigate){
     try {
-      const response =await axios.post("http://localhost:3001/reset-password-token",{email})
+      const response =await axios.post(`${URL}/reset-password-token`,{email})
        if(!response.data.success){
           throw new Error(response.data.message)
        }
@@ -139,7 +139,7 @@ export async function forgotPassword(email,navigate){
 
 export async function ResetPassword(Password,Confirm_Password,Email,navigate){
   try {
-    const response =await axios.post('http://localhost:3001/reset-password',{Password,Confirm_Password,Email});
+    const response =await axios.post(`${URL}/reset-password`,{Password,Confirm_Password,Email});
     if(!response.data.success){
       throw new Error(response.data.message)
    }
@@ -155,7 +155,7 @@ export async function ResetPassword(Password,Confirm_Password,Email,navigate){
 export  function ChangePassword(token,passwordData){
   return async (dispatch)=>{
     try {
-      const response = await axios.post('http://localhost:3001/ChangePassword', passwordData,{
+      const response = await axios.post(`${URL}/ChangePassword`, passwordData,{
         headers: {
           Authorization: `Bearer ${token}`,
        }
