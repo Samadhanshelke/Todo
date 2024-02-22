@@ -44,7 +44,7 @@ const Login = () => {
    
         <div className='flex justify-center flex-col gap-y-4 sm:flex-row sm:items-center sm:justify-center sm:m-auto items-center w-full sm:w-11/12 h-screen sm:gap-x-10' >
             <div>
-                <img src="./Images/loginImg.avif" alt="" className='h-[200px] sm:h-[300px] '/>
+                <img src="https://img.freepik.com/free-photo/3d-render-secure-login-password-illustration_107791-16640.jpg?size=626&ext=jpg" alt="" className='h-[200px] sm:h-[300px] '/>
             </div>
             <div>
                 <form className='flex flex-col gap-y-6' onSubmit={handleSubmit}>
