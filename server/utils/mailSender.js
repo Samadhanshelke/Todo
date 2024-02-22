@@ -12,7 +12,7 @@ exports.mailSender = async(Email,Subject,Message)=>{
         })
        
           let info =  await transporter.sendMail({
-            from:'ArtFarm - Pramod shelke',
+            from:'Todo App - Samadhan shelke',
             to:`${Email}`,
             subject:`${Subject}`,
             html:`${Message}`

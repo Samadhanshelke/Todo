@@ -22,7 +22,7 @@ const OTPSchema = new mongoose.Schema({
 //function to send email
 async function sendVerificationEmail(Email,otp){
     try {
-        const mailResponse = await mailSender(Email,"Verification Email from ArtFarm",emailTemplate(otp))
+        const mailResponse = await mailSender(Email,"Verification Email from Todo App",emailTemplate(otp))
         
     } catch (error) {
         

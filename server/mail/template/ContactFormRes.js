@@ -72,7 +72,7 @@ exports.contactUsEmail = (
     
     <body>
         <div class="container">
-            <span class="logo">ArtFarm</span>
+            <span class="logo">Todo</span>
             <div class="message">Contact Form Confirmation</div>
             <div class="body">
                 <p>Dear Pramod,</p>
