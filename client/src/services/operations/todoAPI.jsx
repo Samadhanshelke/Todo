@@ -2,8 +2,8 @@ import axios from "axios"
 import { setTab, setTodos } from "../../slices/todoSlice"
 
 
-const URL = 'https://todo-8j6l.onrender.com'
-
+// const URL = 'https://todo-8j6l.onrender.com'
+const URL = "http://localhost:3001"
 export function createTodo(todo,token){
     return async (dispatch)=>{
      
@@ -28,13 +28,13 @@ export function getAllTodo(token){
     return async (dispatch)=>{
       
         try {
-            const response = await axios.get(`${URL}/getAllTodo`,
+            const response = await axios.get(` ${URL}/getAllTodo `,
             {
                 headers: {
                  Authorization: `Bearer ${token}`,
               }
             })
-            
+            console.log(response)
             if(response.data.success){
               
                 dispatch(setTodos(response.data.AllTodo));
@@ -42,7 +42,7 @@ export function getAllTodo(token){
              }
              
         } catch (error) {
-            throw new error
+            // throw new error
         }
     }
 }

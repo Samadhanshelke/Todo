@@ -4,7 +4,8 @@ import {setUser} from '../../slices/profileSlice';
 import {setLoading, setToken} from '../../slices/authSlice'
 import toast from "react-hot-toast";
 // const URL = import.meta.env.VITE_BACKEND_URL
-const URL = 'https://todo-8j6l.onrender.com'
+// const URL = 'https://todo-8j6l.onrender.com'
+const URL = "http://localhost:3001"
 
 // sendotp function
 export function sendOtp(Email,navigate){
@@ -19,7 +20,7 @@ export function sendOtp(Email,navigate){
           if (!response.data.success) {
             throw new Error(response.data.message)
           }
-    
+       console.log(response)
           toast.success("OTP Sent Successfully")
           navigate("/verify-email")
         } catch (error) {
