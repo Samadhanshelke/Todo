@@ -3,6 +3,7 @@ import { setTab, setTodos } from "../../slices/todoSlice"
 
 
 const URL = import.meta.env.VITE_BACKEND_URL
+
 export function createTodo(todo,token){
     return async (dispatch)=>{
      
@@ -62,7 +63,7 @@ export function changeTodoStatus(id,token){
             }
        
         } catch (error) {
-            throw new error
+            // throw new error
         }
     }
     
@@ -70,18 +71,20 @@ export function changeTodoStatus(id,token){
 
 export function updateTodo(data,token){
     return async(dispatch)=>{
-       
+       console.log(data,"todoapi")
         try {
             const response = await axios.post(`${URL}/updateTodo`,{data}, {
                 headers: {
                  Authorization: `Bearer ${token}`,
               }
             })
+            console.log(response ,"ffff")
             if(response.data.success){
                 dispatch(getAllTodo(token))
             }
         } catch (error) {
-            throw new error
+            // throw new error
+            console.log(error)
         }
 
     }
@@ -101,7 +104,7 @@ export function DeleteTodo(id,token){
                 dispatch(getAllTodo(token))
             }
         } catch (error) {
-            throw new error
+            // throw new error
         }
 
     }

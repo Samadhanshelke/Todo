@@ -9,6 +9,7 @@ const URL = import.meta.env.VITE_BACKEND_URL
 // sendotp function
 export function sendOtp(Email,navigate){
    return async (dispatch)=>{
+    console.log(Email)
     const toastId = toast.loading("Loading...")
     dispatch(setLoading(true))
   

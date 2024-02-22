@@ -93,17 +93,17 @@ exports.changeTodoStatus = async(req,res)=>{
 
 exports.updateTodo = async(req,res)=>{
     try {
+        console.log(req.body ,"dataaaaaaaa")
         const {data} = req.body;
-   
-        const {Title,Description,_id} = data;
+        const {Title,Description,id} = data;
      
-        if(!Title || !Description  || ! _id){
+        if(!Title || !Description  || !id){
             return res.status(400).json({
                     success:false,
                     message:"all field required"
                  })
         }
-        const updatedTodo = await Todo.findByIdAndUpdate(_id,{
+        const updatedTodo = await Todo.findByIdAndUpdate(id,{
             Title,
             Description,
             

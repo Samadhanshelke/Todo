@@ -12,4 +12,13 @@ body{
     transition:0.8s all;
     
 }
-
+.input-error{
+    border-color: #fc8181;
+}
+.error{
+    color:red;
+    font-size: 12px;
+    text-wrap: wrap;
+    width: 400px;
+    font-style: italic;
+}

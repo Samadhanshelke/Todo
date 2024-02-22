@@ -2,18 +2,13 @@ import { useDispatch, useSelector } from "react-redux"
 import {IoIosArrowForward } from "react-icons/io";
 import { changeTodoStatus } from "../services/operations/todoAPI";
 import { setSingleTodo, setTab, setTodos } from "../slices/todoSlice";
-
-
-
+import { useEffect } from "react";
 
 function AllTodo() {
     const {Todos} = useSelector((state)=>state.todo)
     const {token} = useSelector((state)=>state.auth)
     
-    const dispatch = useDispatch()
-
-    
-    
+    const dispatch = useDispatch() 
 
     const handleTodoComplete = (todo) => {
         dispatch(changeTodoStatus(todo._id,token));
@@ -26,10 +21,13 @@ function AllTodo() {
         });
         setTodos(newTodos);
     };
+
    const handleChangeTab = (todo)=>{
+       dispatch(setSingleTodo(todo))
     dispatch(setTab(1))
-    dispatch(setSingleTodo(todo))
+    console.log(todo,"single_todo")
    }
+   
   
 
   return (
