@@ -244,7 +244,7 @@ exports.ResetPassword = async(req,res)=>{
     }
     const hashedPassword = await bcrypt.hash(Password,10)
 
-    const user =await User.findOneAndUpdate({Email:Email},{Password:hashedPassword},{new:true})
+    const user = await User.findOneAndUpdate({Email:Email},{Password:hashedPassword},{new:true})
 
     return res.status(200).json({
       success:true,
@@ -274,7 +274,7 @@ exports.updateUser = async(req,res)=>{
 
     const updatedUser = await User.findByIdAndUpdate(userId,{
        Name,Email,Phone
-    })
+    },{new:true})
     return res.status(200).json({
       success:true,
       message:"user Updated Successfuly",

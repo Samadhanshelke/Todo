@@ -15,7 +15,7 @@ function UpdateTodo() {
 
   const onSubmit = async (values, actions) => {
     const data = {...values,id:todo._id}
-    console.log("data",values);
+
     dispatch(updateTodo(data,token))
     await new Promise((resolve) => setTimeout(resolve, 1000));
     actions.resetForm();
@@ -45,7 +45,8 @@ function UpdateTodo() {
 
  
 
-  const handleDeleteTodo = ()=>{
+  const handleDeleteTodo = (e)=>{
+    e.preventDefault();
     dispatch(DeleteTodo(todo._id,token))
     
   }

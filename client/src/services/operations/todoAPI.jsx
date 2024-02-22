@@ -1,5 +1,6 @@
 import axios from "axios"
 import { setTab, setTodos } from "../../slices/todoSlice"
+import toast from "react-hot-toast"
 
 
 const URL = import.meta.env.VITE_BACKEND_URL
@@ -14,12 +15,17 @@ export function createTodo(todo,token){
                  Authorization: `Bearer ${token}`,
               }
             })
+
          if(response.data.success){
+            toast.success("Created SuccessFully")
              dispatch(getAllTodo(token))
+
+         }else{
+            toast.error(response.data.message)
          }
              
         } catch (error) {
-           throw new error
+            toast.error('something went wrong')
         }
     }
 }
@@ -34,15 +40,16 @@ export function getAllTodo(token){
                  Authorization: `Bearer ${token}`,
               }
             })
-            console.log(response)
-            if(response.data.success){
-              
-                dispatch(setTodos(response.data.AllTodo));
-               
+         
+            if(response.data.success){ 
+
+               dispatch(setTodos(response.data.AllTodo));     
+             }else{
+                toast.error(response.data.message)
              }
              
         } catch (error) {
-            // throw new error
+            toast.error('something went wrong')
         }
     }
 }
@@ -60,10 +67,12 @@ export function changeTodoStatus(id,token){
           
             if(response.data.success){
                 dispatch(getAllTodo(token))
-            }
+            }else{
+                toast.error(response.data.message)
+             }
        
         } catch (error) {
-            // throw new error
+            toast.error('something went wrong')
         }
     }
     
@@ -71,20 +80,22 @@ export function changeTodoStatus(id,token){
 
 export function updateTodo(data,token){
     return async(dispatch)=>{
-       console.log(data,"todoapi")
+     
         try {
             const response = await axios.post(`${URL}/updateTodo`,{data}, {
                 headers: {
                  Authorization: `Bearer ${token}`,
               }
             })
-            console.log(response ,"ffff")
+           
             if(response.data.success){
+                toast.success(response.data.message)
                 dispatch(getAllTodo(token))
-            }
+            }else{
+                toast.error(response.data.message)
+             }
         } catch (error) {
-            // throw new error
-            console.log(error)
+            toast.error('something went wrong')
         }
 
     }
@@ -101,10 +112,11 @@ export function DeleteTodo(id,token){
             })
             if(response.data.success){
                 dispatch(setTab(null))
+                toast.success(response.data.message)
                 dispatch(getAllTodo(token))
             }
         } catch (error) {
-            // throw new error
+            toast.error('something went wrong')
         }
 
     }

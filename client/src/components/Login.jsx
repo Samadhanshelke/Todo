@@ -10,7 +10,7 @@ const Login = () => {
   const dispatch = useDispatch();
 
   const onSubmit = async (values, actions) => {
-    console.log("data",values);
+  
     dispatch(login(values, navigate));
     await new Promise((resolve) => setTimeout(resolve, 1000));
     actions.resetForm();

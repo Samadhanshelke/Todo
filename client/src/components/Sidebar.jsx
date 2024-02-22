@@ -10,31 +10,17 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { LuListTodo } from "react-icons/lu";
 import { setNavigation } from "../slices/todoSlice";
-const Sidebar = () => {
-  const [open,setOpen] = useState(true);
+const Sidebar = ({open,setOpen}) => {
  
-
-
-  
   const navigate = useNavigate();
   const dispatch = useDispatch();
  
-  const logoutUser = ()=>{
-        
+  const logoutUser = ()=>{  
     dispatch(logout(navigate))
  }
 
 
-
-
-
-
-
-
-
-
-
-if (open){
+if (!open){
   return(
     <div className=" text-[22px] text-[#505050] cursor-pointer   mt-4 sm:h-screen sm:max-h-[calc(100vh-32px)] pt-4" onClick={()=>setOpen(!open)}>   
        <GiHamburgerMenu/>

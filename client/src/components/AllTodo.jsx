@@ -10,7 +10,10 @@ function AllTodo() {
     
     const dispatch = useDispatch() 
 
-    const handleTodoComplete = (todo) => {
+    const handleTodoComplete = (e,todo) => {
+        e.stopPropagation(); 
+
+       dispatch(setTab(null))
         dispatch(changeTodoStatus(todo._id,token));
         
         const newTodos = Todos.map((t)=>{
@@ -23,9 +26,10 @@ function AllTodo() {
     };
 
    const handleChangeTab = (todo)=>{
+  
        dispatch(setSingleTodo(todo))
     dispatch(setTab(1))
-    console.log(todo,"single_todo")
+   
    }
    
   
@@ -39,7 +43,7 @@ function AllTodo() {
                        <div className="flex items-center gap-x-2 ">
                              <input type="checkbox"
                                checked={todo.isCompleted}
-                               onChange={()=>handleTodoComplete(todo)}
+                               onChange={(e)=>handleTodoComplete(e,todo)}
                                className="cursor-pointer"
                               />
                              <h1>{todo.Title}</h1>
@@ -50,9 +54,7 @@ function AllTodo() {
                 )
             })
         }
-     </div>
-        
-  
+     </div>  
   )
 }
 

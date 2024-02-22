@@ -2,17 +2,23 @@ import { useState } from "react";
 import { MdErrorOutline } from "react-icons/md";
 import { forgotPassword } from "../services/operations/authAPI";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import toast from "react-hot-toast";
 const ForgotPassword = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate()
+ 
   const[email,setEmail] = useState("")
   const handleForgotPassword = (e)=>{
      e.preventDefault();
 
    
      if(email == ""){
+      toast.error("email is required")
       return
      }
-    forgotPassword(email,navigate)
+     dispatch(forgotPassword(email,navigate))
+     
 
   }
   return (

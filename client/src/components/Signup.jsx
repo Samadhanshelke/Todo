@@ -20,7 +20,7 @@ const Signup = () => {
  
 
    const onSubmit = async (values, actions) => {
-    console.log("data",values);
+  
     
     dispatch(setSignupData(values))
     dispatch(sendOtp(values.Email, navigate))

@@ -12,7 +12,7 @@ function AddTodo() {
 
  
  const onSubmit = async (values, actions) => {
-  console.log("data",values);
+ 
   dispatch(createTodo(values,token)) 
   await new Promise((resolve) => setTimeout(resolve, 1000));
   actions.resetForm();

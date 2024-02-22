@@ -1,7 +1,7 @@
 import axios from "axios"
 
 import {setUser} from '../../slices/profileSlice';
-import {setLoading, setToken} from '../../slices/authSlice'
+import {setLoading, setToken, setUuid} from '../../slices/authSlice'
 import toast from "react-hot-toast";
 const URL = import.meta.env.VITE_BACKEND_URL
 
@@ -9,7 +9,7 @@ const URL = import.meta.env.VITE_BACKEND_URL
 // sendotp function
 export function sendOtp(Email,navigate){
    return async (dispatch)=>{
-    console.log(Email)
+  
     const toastId = toast.loading("Loading...")
     dispatch(setLoading(true))
   
@@ -20,7 +20,7 @@ export function sendOtp(Email,navigate){
           if (!response.data.success) {
             throw new Error(response.data.message)
           }
-       console.log(response)
+    
           toast.success("OTP Sent Successfully")
           navigate("/verify-email")
         } catch (error) {
@@ -104,18 +104,26 @@ export function logout(navigate){
 //update user
 export function updateUser(userData,token){
   return async (dispatch)=>{
-    const response = await axios.post(`${URL}/updateUser`,userData,{
-      headers: {
-        Authorization: `Bearer ${token}`,
-     }
-    })
+    try {
+      const response = await axios.post(`${URL}/updateUser`,userData,{
+        headers: {
+          Authorization: `Bearer ${token}`,
+       }
+      })
+    
   
-
-    if(response.data.success){
-      dispatch(setUser(response.data.updatedUser))
-      localStorage.setItem("user",JSON.stringify(response.data.updatedUser))
-      toast.success('Updated Successfully.');
+      if(response.data.success){
+        dispatch(setUser(response.data.updatedUser))
+     
+        localStorage.setItem("user",JSON.stringify(response.data.updatedUser))
+        toast.success('Updated Successfully.');
+      }else{
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      toast.error('Something Went wrong.');
     }
+    
 
   }
 }
@@ -124,35 +132,45 @@ export function updateUser(userData,token){
 
 
 //forgot otp
-export async function forgotPassword(email,navigate){
+export function forgotPassword(email,navigate){
+  return async (dispatch)=>{
     try {
       const response =await axios.post(`${URL}/reset-password-token`,{email})
        if(!response.data.success){
+        toast.error(response.data.message)
           throw new Error(response.data.message)
-       }
+       }else{
+   
+        localStorage.setItem("uuid",JSON.stringify(response.data.uuid))
+      }
+      dispatch(setUuid(response.data.uuid))
     
        toast.success("please check Email")
        navigate('/')
 
     } catch (error) {
-    throw new error
+      toast.error("something went wrong")
     }
+  }
 }
 
 
-export async function ResetPassword(Password,Confirm_Password,Email,navigate){
+export  function ResetPassword(Password,Confirm_Password,Email,navigate){
+  return async (dispatch)=>{
   try {
     const response =await axios.post(`${URL}/reset-password`,{Password,Confirm_Password,Email});
     if(!response.data.success){
+      toast.error(response.data.message)
       throw new Error(response.data.message)
    }
-
+    
    toast.success("Password Changed Successfully,Please login")
+   localStorage.removeItem("uuid")
    navigate('/login')
   } catch (error) {
-  throw new error
+    toast.error("something went wrong")
   }
-
+  }
 }
 
 export  function ChangePassword(token,passwordData){
@@ -167,9 +185,11 @@ export  function ChangePassword(token,passwordData){
     
       if(response.data.success){
         toast.success("Password Changed Successfully.")
+      }else{
+        toast.error(response.data.message)
       }
     } catch (error) {
-    throw new error
+      toast.error('something went wrong')
     }
 
   }

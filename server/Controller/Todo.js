@@ -93,7 +93,7 @@ exports.changeTodoStatus = async(req,res)=>{
 
 exports.updateTodo = async(req,res)=>{
     try {
-        console.log(req.body ,"dataaaaaaaa")
+    
         const {data} = req.body;
         const {Title,Description,id} = data;
      
