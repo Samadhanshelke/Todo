@@ -9,7 +9,9 @@ const dotenv = require("dotenv");
 const cors = require('cors');
 dotenv.config();
 dbConnect();
-
+app.get("/test",(req,res)=>{
+    res.send("running")
+})
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
