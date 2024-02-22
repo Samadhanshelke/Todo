@@ -2,8 +2,7 @@ import axios from "axios"
 import { setTab, setTodos } from "../../slices/todoSlice"
 
 
-const URL = 'https://todo-backend-m9xs.onrender.com'
-// const URL = "http://localhost:3001"
+const URL = import.meta.env.VITE_BACKEND_URL
 export function createTodo(todo,token){
     return async (dispatch)=>{
      

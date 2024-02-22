@@ -66,7 +66,7 @@ exports.passwordUpdated = (email, name,uuid) => {
                 <p>Hey ${name},</p>
                 <p>Your password reset link for the email  <span class="highlight">${email}</span> is.
                 </p>
-                <a href="http://localhost:5173/reset-password/${uuid}">Click to reset password</a>
+                <a href="https://todo-lovat-nine.vercel.app/reset-password/${uuid}">Click to reset password</a>
                 <p>If you did not request this password change, please contact us immediately to secure your account.</p>
             </div>
            

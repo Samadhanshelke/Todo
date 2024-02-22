@@ -3,9 +3,8 @@ import axios from "axios"
 import {setUser} from '../../slices/profileSlice';
 import {setLoading, setToken} from '../../slices/authSlice'
 import toast from "react-hot-toast";
-// const URL = import.meta.env.VITE_BACKEND_URL
-const URL = 'https://todo-backend-m9xs.onrender.com'
-// const URL = "http://localhost:3001"
+const URL = import.meta.env.VITE_BACKEND_URL
+
 
 // sendotp function
 export function sendOtp(Email,navigate){
