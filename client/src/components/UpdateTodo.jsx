@@ -1,12 +1,11 @@
 
 import { useDispatch, useSelector } from "react-redux";
-// import { createTodo } from "../services/operations/todoAPI";
-import { setSingleTodo, setTab } from "../slices/todoSlice";
+import { setTab } from "../slices/todoSlice";
 import { DeleteTodo, updateTodo } from "../services/operations/todoAPI";
 import { RxCross2 } from "react-icons/rx";
 import { useFormik } from "formik";
 import { todoSchema } from "../Validate";
-import { useEffect, useState } from "react";
+
 
 function UpdateTodo() {
   
@@ -20,6 +19,7 @@ function UpdateTodo() {
     dispatch(updateTodo(data,token))
     await new Promise((resolve) => setTimeout(resolve, 1000));
     actions.resetForm();
+    dispatch(setTab(null))
   };
 
   
