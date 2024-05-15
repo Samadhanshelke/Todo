@@ -1,4 +1,4 @@
-const express = require('express');
+ const express = require('express');
 const app = express();
 const {dbConnect} = require('./config/dbConnect')
 const AuthRoutes = require('./routes/AuthRoutes')

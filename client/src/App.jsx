@@ -10,6 +10,8 @@ import VerifyEmail from './Page/VerifyEmail'
 import ForgotPassword from './Page/ForgotPassword'
 import RessetPassword from './Page/RessetPassword'
 import PrivateRoute from './utils/PrivateRoute'
+
+
 function App() {
   return (
     <>
@@ -20,9 +22,12 @@ function App() {
             <Route path='/login' element={<Login/>}/>
             <Route path='/signup' element={<Signup/>}/>
          
+         
+         
             <Route path='/verify-email' element={<VerifyEmail/>}/>
             <Route path='/reset-password/:id' element={<RessetPassword/>}/>
             <Route path='/reset-password' element={<ForgotPassword/>}/>
+           
         </Routes>
       </BrowserRouter>
      <Toaster/>

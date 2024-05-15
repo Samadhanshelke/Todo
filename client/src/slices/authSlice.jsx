@@ -21,7 +21,7 @@ const authSlice = createSlice({
       state.token = action.payload;
     },
     setUuid(state,action){
-      state.uuid = action.payload
+      state.uuid = action.payload;
     }
   },
 });

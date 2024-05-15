@@ -6,7 +6,7 @@ const otpGenerator = require('otp-generator')
 const OTP = require('../model/OTP')
 const { mailSender } = require('../utils/mailSender')
 const { passwordUpdated } = require('../mail/template/passwordUpdate')
-const { PassThrough } = require('stream')
+
 
 dotenv.config();
 

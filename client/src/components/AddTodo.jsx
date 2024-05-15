@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { createTodo } from "../services/operations/todoAPI";
 import { RxCross2 } from "react-icons/rx";
 import { setTab } from "../slices/todoSlice";
-import { useState } from "react";
 import {todoSchema} from '../Validate'
 import { useFormik } from "formik";
 
@@ -14,7 +13,7 @@ function AddTodo() {
  const onSubmit = async (values, actions) => {
  
   dispatch(createTodo(values,token)) 
-  dispatch(setTab(null)) 
+  // dispatch(setTab(null)) 
   await new Promise((resolve) => setTimeout(resolve, 1000));
   actions.resetForm();
 };
