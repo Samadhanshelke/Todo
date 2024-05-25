@@ -92,7 +92,7 @@ const PAGE_SIZE = 5;
   return (
     <div  className="flex w-full   sm:w-[50vw] flex-col  gap-x-16 mt-4 pt-4">
           <h1 className="text-4xl font-bold mb-6">TODOS</h1>
-          <section className="sm:flex-col flex-row flex justify-end gap-4 items-center mb-4 w-full">
+          <section className="flex-col sm:flex-row flex justify-end gap-4 items-center mb-4 w-full">
               <div>
                 <input type="text" value={search} onChange={handleSearch} placeholder="Search Here" className="border focus:outline-none p-2 rounded-md"/>
               </div>
