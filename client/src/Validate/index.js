@@ -30,6 +30,7 @@ export const signupSchema = yup.object().shape({
     Description: yup
       .string()  
       .required("Description is required"),
+      DueDate:yup.string().required("Date is required")
     
   
   });

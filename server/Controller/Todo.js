@@ -3,9 +3,9 @@ const User = require("../model/User");
 
 exports.createTodo = async(req,res)=>{
     try {
-        const {Title,Description} = req.body;
+        const {Title,Description, DueDate} = req.body;
         
-        if(!Title || !Description){
+        if(!Title || !Description || !DueDate){
             return res.status(400).json({
                 success:false,
                 message:'all field required',
@@ -16,7 +16,7 @@ exports.createTodo = async(req,res)=>{
         const userId = req.user.id;
         const user = await User.findById(userId)
        const todo = await Todo.create(req.body);
-
+   
         //add todo to the user schema
 
       const newusertodo = await User.findByIdAndUpdate(
@@ -95,9 +95,9 @@ exports.updateTodo = async(req,res)=>{
     try {
     
         const {data} = req.body;
-        const {Title,Description,id} = data;
+        const {Title,Description,id,DueDate} = data;
      
-        if(!Title || !Description  || !id){
+        if(!Title || !Description  || !id || !DueDate){
             return res.status(400).json({
                     success:false,
                     message:"all field required"
@@ -106,6 +106,7 @@ exports.updateTodo = async(req,res)=>{
         const updatedTodo = await Todo.findByIdAndUpdate(id,{
             Title,
             Description,
+            DueDate
             
         },{new:true})
         

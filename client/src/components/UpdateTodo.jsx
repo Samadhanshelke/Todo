@@ -35,12 +35,14 @@ function UpdateTodo() {
     initialValues: {
       Title: todo.Title,
       Description: todo.Description,
-      
+      DueDate:todo.DueDate
     },
+    
     validationSchema: todoSchema,
     onSubmit,
     enableReinitialize: true,
   });
+
 
 
  
@@ -64,7 +66,22 @@ function UpdateTodo() {
 
             <textarea className={`${errors.Description && touched.Description ? "input-error" : ""} border px-3 py-2   rounded resize-none`} name="Description" value={values.Description} id="" cols="30" rows="4" placeholder="Description" onChange={handleChange} onBlur={handleBlur}></textarea> 
             {errors.Description && touched.Description && <p className="error">{errors.Description}</p>}
+            <div className="flex items-center ps-1 gap-x-10">
+          <label htmlFor="dueDate">Due Date</label>
+          <input
+            type="date"
+            name="DueDate"
+            value={values.DueDate}
+            className="bg-transparent border px-4 py-1 rounded"
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
 
+          {errors.DueDate && touched.DueDate && (
+            <p className="error">{errors.DueDate}</p>
+          )}
+
+        </div>
             <div className="flex gap-x-4">
               <button  className="mt-10 text-black font-bold px-2 py-2 hover:bg-red-500 rounded border" onClick={handleDeleteTodo}>Delete Todo</button>
               <button type="submit" disabled={isSubmitting} className="mt-10 bg-yellow-500 font-bold px-2 py-2 hover:bg-slate-600 text-white hover:text-white rounded">Save Changes</button>

@@ -12,6 +12,10 @@ const TodoSchema = new mongoose.Schema({
  isCompleted:{
     type:Boolean,
     default:false
+ },
+ DueDate:{
+    type:String,
+    required:true
  }
 
    

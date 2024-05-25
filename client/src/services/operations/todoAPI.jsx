@@ -3,7 +3,9 @@ import { setTab, setTodos } from "../../slices/todoSlice"
 import toast from "react-hot-toast"
 
 
-const URL = import.meta.env.VITE_BACKEND_URL
+// const URL = import.meta.env.VITE_BACKEND_URL
+const URL = 'http://localhost:3001'
+
 
 export function createTodo(todo,token){
     return async (dispatch)=>{

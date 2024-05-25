@@ -3,8 +3,8 @@ import axios from "axios"
 import {setUser} from '../../slices/profileSlice';
 import {setLoading, setToken, setUuid} from '../../slices/authSlice'
 import toast from "react-hot-toast";
-const URL = import.meta.env.VITE_BACKEND_URL
-
+// const URL = import.meta.env.VITE_BACKEND_URL
+const URL = 'http://localhost:3001'
 
 // sendotp function
 export function sendOtp(Email,navigate){
