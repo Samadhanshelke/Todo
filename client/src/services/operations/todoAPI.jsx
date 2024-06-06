@@ -1,6 +1,7 @@
 import axios from "axios"
 import { setTab, setTodos } from "../../slices/todoSlice"
 import toast from "react-hot-toast"
+import { setAllUser } from "../../slices/profileSlice"
 
 
 const URL = import.meta.env.VITE_BACKEND_URL
@@ -36,7 +37,7 @@ export function getAllTodo(token){
     return async (dispatch)=>{
       
         try {
-            const response = await axios.get(` ${URL}/getAllTodo `,
+            const response = await axios.get(`${URL}/getAllTodo`,
             {
                 headers: {
                  Authorization: `Bearer ${token}`,
@@ -117,6 +118,53 @@ export function DeleteTodo(id,token){
                 toast.success(response.data.message)
                 dispatch(getAllTodo(token))
             }
+        } catch (error) {
+            toast.error('something went wrong')
+        }
+
+    }
+}
+
+export function getAllUser(token){
+    return async (dispatch)=>{
+      
+        try {
+            const response = await axios.get(` ${URL}/getAllUser`,
+            {
+                headers: {
+                 Authorization: `Bearer ${token}`,
+              }
+            })
+         
+            if(response.data.success){ 
+
+               dispatch(setAllUser(response.data.AllUser));     
+             }else{
+                toast.error(response.data.message)
+             }
+             
+        } catch (error) {
+            toast.error('something went wrong')
+        }
+    }
+}
+
+export function ChangeAccess(id,token){
+    return async(dispatch)=>{
+     
+        try {
+            const response = await axios.post(`${URL}/changeAccess`,{id}, {
+                headers: {
+                 Authorization: `Bearer ${token}`,
+              }
+            })
+           
+            if(response.data.success){
+                toast.success(response.data.message)
+                dispatch(getAllUser(token))
+            }else{
+                toast.error(response.data.message)
+             }
         } catch (error) {
             toast.error('something went wrong')
         }

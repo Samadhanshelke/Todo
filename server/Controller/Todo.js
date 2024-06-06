@@ -162,3 +162,53 @@ exports.deleteTodo = async(req,res)=>{
         })
     }
 }
+
+exports.getAllUser = async(req,res)=>{
+    try {
+        const AllUser = await User.find({ accountType: { $ne: 'SuperAdmin' } });
+       
+        return res.status(200).json({
+            success:true,
+            message:"alluser fetched successfully",
+            AllUser:AllUser
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success:false,
+            message:"error in fetching todos"
+        })
+    }
+}
+
+exports.ChangeAccess = async(req,res)=>{
+    try {
+    
+        const {id} = req.body;
+       
+     
+        if( !id ){
+            return res.status(400).json({
+                    success:false,
+                    message:"all field required"
+                 })
+        }
+
+        const user = await User.findById(id)
+        const updatedUser = await User.findByIdAndUpdate(id,{
+            accountType:user.accountType === "User" ? "Admin" :"User"
+            
+        },{new:true})
+        
+        return res.status(200).json({
+            success:true,
+            message:"Access Changes",
+            user:updatedUser
+        })
+
+    } catch (error) {
+        return res.status(500).json({
+            success:false,
+            message:"error in Changing Access"
+        })
+    }
+}

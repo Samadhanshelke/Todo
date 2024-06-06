@@ -22,6 +22,7 @@ export function sendOtp(Email,navigate){
           }
     
           toast.success("OTP Sent Successfully")
+          console.log(response)
           navigate("/verify-email")
         } catch (error) {
           
@@ -71,7 +72,7 @@ export function signUp( Name,Email,Phone,Password,otp,navigate){
 export function login(data,navigate){
   return async (dispatch)=>{
   
-    axios.post(`${URL}/login`,data).then((response)=>{
+    axios.post(`${URL}/login`, data).then((response)=>{
       
       dispatch(setUser(response.data.user))
       dispatch(setToken(response.data.token))

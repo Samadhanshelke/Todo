@@ -18,13 +18,7 @@ const UserSchema = new mongoose.Schema({
         ref:"Todo",
         }
      ],
-     ListOptions:{
-        type: [{
-            type: String,
-            required: true,
-        }],
-        default: ["Personal", "Work", "Home", "Other"] 
-    },
+     
 
     Phone:{
         type:String,
@@ -33,10 +27,12 @@ const UserSchema = new mongoose.Schema({
     token:{
       type:String
     },
-    isAdmin:{
-        type:Boolean,
-        default:false
-    }
+    accountType:{
+        type:String,
+        enum:["Admin","User","SuperAdmin"],
+        default:"User",
+        
+    },
 })
 
 module.exports = mongoose.model("User", UserSchema)

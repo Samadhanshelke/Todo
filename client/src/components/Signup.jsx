@@ -15,10 +15,6 @@ const Signup = () => {
    
 
 
-
-
- 
-
    const onSubmit = async (values, actions) => {
   
     
@@ -82,7 +78,7 @@ const Signup = () => {
          </span>
          <button type='submit' disabled={isSubmitting} className='bg-blue-500 hover:bg-blue-400  text-white px-2 py-2 rounded'>SignUp</button>
          <div>
-            <Link to={'/login'}>Already have an account? Login</Link>
+            <Link to={'/login'}>Already have an account? Login</Link>  
          </div>
     </div>
                 

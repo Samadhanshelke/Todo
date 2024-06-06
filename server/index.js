@@ -1,4 +1,4 @@
- const express = require('express');
+const express = require('express');
 const app = express();
 const {dbConnect} = require('./config/dbConnect')
 const AuthRoutes = require('./routes/AuthRoutes')
@@ -8,6 +8,7 @@ const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv");
 const cors = require('cors');
 dotenv.config();
+
 dbConnect();
 app.get("/test",(req,res)=>{
     res.send("running")

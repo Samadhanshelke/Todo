@@ -4,14 +4,15 @@ import { FaRegUser } from "react-icons/fa";
 
 import { FaSignOutAlt } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { useState } from "react";
+import { RiAdminLine } from "react-icons/ri";
+import { useSelector } from "react-redux"
 import { logout } from "../services/operations/authAPI";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { LuListTodo } from "react-icons/lu";
 import { setNavigation } from "../slices/todoSlice";
 const Sidebar = ({open,setOpen}) => {
- 
+  const {user} =  useSelector((state)=>state.profile)
   const navigate = useNavigate();
   const dispatch = useDispatch();
  
@@ -50,10 +51,22 @@ if (!open){
        
 
         <div className="flex flex-col gap-y-2">
+        {
+          user.accountType === "Admin" || user.accountType === "SuperAdmin" 
+          ?   <span className="flex items-center gap-x-2 cursor-pointer" onClick={()=>dispatch(setNavigation(2))}>
+               <RiAdminLine/>
+                Manage Admin
+             </span>
+          : null
+        }
+          
+
             <span className="flex items-center gap-x-2 cursor-pointer" onClick={()=>dispatch(setNavigation(1))}>
               <FaRegUser />
               Profile
             </span>
+
+           
             <span className="flex items-center gap-x-2 cursor-pointer" onClick={logoutUser}>
               <FaSignOutAlt />
               Sign Out
