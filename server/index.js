@@ -8,7 +8,8 @@ const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv");
 const cors = require('cors');
 dotenv.config();
-
+const mailid = process.env.MAIL_USER
+console.log(mailid)
 dbConnect();
 app.get("/test",(req,res)=>{
     res.send("running")

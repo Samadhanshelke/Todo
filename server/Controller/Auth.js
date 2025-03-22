@@ -127,6 +127,7 @@ exports.signUp = async(req,res)=>{
 exports.login = async(req,res)=>{
     try {
         const {Email,Password} = req.body;
+        console.log(req.body)
     if(!Email || !Password){
         return res.status(400).json({
             success:false,
